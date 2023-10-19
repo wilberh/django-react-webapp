@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'core',
+    'core.user',
+    'rest_framework',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +76,20 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'CoreRoot.wsgi.application'
+
+
+# Telling Django to use the new User model for authentication
+AUTH_USER_MODEL = 'core_user.User'
+
+
+# Default authentication - simplejwt - facilitates creation/management/refreshing access tokens
+REST_FRAMEWORK = {
+   'DEFAULT_AUTHENTICATION_CLASSES': (
+       'rest_framework_simplejwt.authentication.JWTAuthentication',
+   ),
+   'DEFAULT_FILTER_BACKENDS':
+     ['django_filters.rest_framework.DjangoFilterBackend'],
+}
 
 
 # Database
